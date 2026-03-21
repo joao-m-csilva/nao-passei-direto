@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(53, 103, 202);
+    font-family: sans-serif;
+}
+
+
+#bem-vindo{
+    background-color: rgb(62, 196, 249);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
