@@ -1,0 +1,35 @@
+.container{
+    margin: 10%;
+}
+.cls_input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+.lb_input {
+    display: block;
+    text-align: left;
+}
+.div-btn-atualiza{
+    margin-top: 2%;
+}
+.btn-atualiza{
+    background-color: blue;
+    padding: 10px 25px;
+    border-radius: 10px;
+    color: white;
+}
+
+@media (min-width: 992px) {
+  .cls_formulario{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+  }
+  .cls_formulario > div:last-child {
+    grid-column: 1 / 3; 
+    display: flex;
+    justify-content: center;
+}
+}
