@@ -1,10 +1,14 @@
 body {
-    background: #6dc3d8ce;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #020024;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%,rgba(0, 212, 255, 1) 100%);
+    color: white;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 form {
-    background-color: white;
+    background: #020024;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%,rgba(0, 212, 255, 1) 100%);
 
 
     border: 2px solid rgb(255, 255, 255);
@@ -15,29 +19,28 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px;
-    height: 350px;
-
-    box-shadow: 2px 1px 5px 1px black;
+    width: 350px;
+    height: 250px;
     
 }
 
 input#email, #senha {
-    width: 320px;
+    width: 250px;
     height: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 input.botao {
-    background-color: black;
+    background: #EEAECA;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 
 
     margin-top: 30px;
-    width: 250px;
+    width: 150px;
     height: 40px;
     border: 1px solid white;
-    color: white;
-    border-radius: 5px;
+    color: rgb(66, 64, 64);
+    
 }
 
 input:hover.botao {
@@ -46,11 +49,5 @@ input:hover.botao {
 }
 
 p {
-    margin-right: 280px;
-    
+    text-align: center;
 }
-
-h2 {
-    margin-top: 50px;
-}
-
