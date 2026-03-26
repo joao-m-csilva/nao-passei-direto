@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../nao-passei-direto/src/styles/login-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">  
     <title>Não Passei Direto</title>
 </head>
 <body>
@@ -14,6 +15,7 @@
             
             <p>E-mail:</p> <label for="email"><input type="email" name="email" id="email" placeholder="seu@email.com"></label>
             <p>Senha:</p>  <label for="senha"><input type="password" name="senha" id="senha" placeholder="abcd"></label>
+            <i class="bi bi-eye-fill" id="olho" onclick="ShowEye()"></i>   
             <br>
             <input type="submit" value="Login" class="botao">
         </div>
@@ -41,7 +43,20 @@
             console.error("Erro ao adicionar o evento de clique:", error)
         }
 
-        
+
+        // Função para mostrar ou ocultar a senha
+        function ShowEye () {
+            const inputPass = document.getElementById("senha")
+            const olho = document.getElementById("olho")
+            if (inputPass.type === "password") {
+                inputPass.setAttribute("type", "text")
+                olho.classList.replace ("bi-eye-fill", "bi-eye-slash-fill")
+            } else {
+                inputPass.setAttribute("type", "password")
+                olho.classList.replace ("bi-eye-slash-fill", "bi-eye-fill")
+            }
+        } 
+
     </script>
 </body>
 </html>
