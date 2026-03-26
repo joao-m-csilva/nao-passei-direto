@@ -18,5 +18,30 @@
             <input type="submit" value="Login" class="botao">
         </div>
     </form>
+    <script>
+        // Função para obter o valor do campo de entrada
+        function Submit (id) {
+            const ValueEmail = document.getElementById(id)
+            return ValueEmail.value
+        }
+
+        try {
+            const Button = document.getElementById("botao")
+            Button.addEventListener ("click", (event) => {
+                 event.preventDefault()
+                const email = Submit("email")
+                const password = Submit("senha")
+                if (!email || !password) {
+                    document.getElementById("error").innerText = "Preencha todos os campos"
+                }   else {
+                    document.getElementById("error").innerText = "Login bem-sucedido"
+                }
+            }   
+        )} catch (error) {
+            console.error("Erro ao adicionar o evento de clique:", error)
+        }
+
+        
+    </script>
 </body>
 </html>
