@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/styles/reset.css">
-    <link rel="stylesheet" href="src/styles/index.css">
-    <title>Bem-vindo</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../nao-passei-direto/src/styles/login-style.css">
+    <title>Não Passei Direto</title>
 </head>
 <body>
-    <section id="bem-vindo">
-        <h1>Plataforma de gerenciamento de Alunos</h1>
-        <p>
-            Essa plataforma foi desenvolvida como solução para o desafio 1 da segunda edição do Hackathon da comunidade KizaDev.
-        </p>
-    </section>
+    <form action="#" autocomplete="off" method="post">
+        <h2>Sistema de Alunos</h2>
+        <div>
+            
+            <p>E-mail:</p> <label for="email"><input type="email" name="email" id="email" placeholder="seu@email.com"></label>
+            <p>Senha:</p>  <label for="senha"><input type="password" name="senha" id="senha" placeholder="abcd"></label>
+            <br>
+            <input type="submit" value="Login" class="botao">
+        </div>
+    </form>
 </body>
 </html>
