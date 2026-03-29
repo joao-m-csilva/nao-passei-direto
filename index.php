@@ -1,11 +1,6 @@
 <?php 
 require_once "src/includes/acess_db.php";
 
-$email = $_POST['email'];
-$senha = md5($_POST['senha']);
-
-if($)
-
 ?>
 
 
