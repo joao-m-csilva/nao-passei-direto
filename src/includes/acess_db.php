@@ -8,12 +8,6 @@ try {
     $connection = new PDO('mysql:host=localhost; dbname=crud_hackathon', $db_user, $db_pass);
   
 
-}catch(PDOException) {
-    print("Erro ao conectar com o banco de dados. ");
+}catch(PDOException $e) {
+    print("Erro ao conectar com o banco de dados. " . $e -> getMessage());
 }
-
-echo("Conexão bem sucedida.")
-
-?>
-
-

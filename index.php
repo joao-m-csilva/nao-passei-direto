@@ -1,6 +1,35 @@
 <?php 
-require_once "src/includes/acess_db.php";
 
+require("src/includes/acess_db.php");
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    if(!empty($email) && !empty($senha)){
+    $senha_hash = md5($senha);
+    $sql = "SELECT * FROM admin_users WHERE email='$email' AND password='$senha_hash'";
+    $login = $connection->query($sql);
+    // var_dump($login->rowCount()); die();
+
+    if($login->rowCount() == 1){
+        session_start();
+        $_SESSION['id'] = $email;
+        $_SESSION['password'] = $senha;
+        $_SESSION['logged'] = true;
+        header("Location: src/pages/home.php");
+        
+    }else{
+        echo("<script>alert('Usuário ou senha inválidos.');</script>");
+    }
+    }else{
+        if(empty($_POST['email'])){
+            echo("<script>alert('O campo email deve ser preenchido.');</script>");
+        }elseif(empty($_POST['senha'])){
+            echo("<script>alert('O campo senha deve ser preenchido.');</script>");
+        }
+    }
+}
+    
 ?>
 
 
@@ -14,7 +43,7 @@ require_once "src/includes/acess_db.php";
     <title>Não Passei Direto</title>
 </head>
 <body>
-    <form action="index.php" autocomplete="off" method="post">
+    <form action="index.php" autocomplete="off" method="POST">
         <h2>Sistema de Alunos</h2>
         <div>
             
