@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `admin_users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin_users` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(25) DEFAULT NULL,
+  `username` varchar(25) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `admin_users` (
 --
 
 /*!40000 ALTER TABLE `admin_users` DISABLE KEYS */;
+INSERT INTO `admin_users` VALUES (1,'admin','admin@hackathon.com','$2y$12$stXT9/ZCMP4s6hZbCRRSoeGzi5.6.7U2glWsdLImvjJpiGhw35MNq');
 /*!40000 ALTER TABLE `admin_users` ENABLE KEYS */;
 
 --
@@ -78,4 +79,4 @@ CREATE TABLE `alunos` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-23 22:57:19
+-- Dump completed on 2026-03-28 20:52:30
