@@ -1,0 +1,25 @@
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.bloco-1{
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.bloco-2{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(42, 165, 42);
+}
+
+.bloco-3{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(189, 166, 166);
+}
