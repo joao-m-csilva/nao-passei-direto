@@ -11,5 +11,3 @@ try {
 }catch(PDOException $e) {
     print("Erro ao conectar com o banco de dados. " . $e -> getMessage());
 }
-
-?>
