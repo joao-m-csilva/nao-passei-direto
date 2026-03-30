@@ -1,5 +1,5 @@
 ## Sistema de Gestão de Alunos (CRUD)
-Este projeto está sendo desenvolvido para o Hackathon, com o objetivo de entregar uma aplicação funcional para o gerenciamento de estudantes, integrando um sistema de autenticação e uma interface moderna.
+Este projeto está sendo desenvolvido para o **[Hackathon da comunidade Kiza Dev](https://discord.gg/pBHvZEVEd)** [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=flat&logo=discord&logoColor=white)](https://discord.gg/pBHvZEVEd), com o objetivo de entregar uma aplicação funcional para o gerenciamento de estudantes, integrando um sistema de autenticação e uma interface moderna.
 
 ⚠️ Status do Projeto: Em desenvolvimento.
 
