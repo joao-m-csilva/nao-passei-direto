@@ -8,6 +8,7 @@ A aplicação foca em um ciclo completo de CRUD (Create, Read, Update, Delete) p
 
 ## Tecnologias Utilizadas
 `Front-end`
+
 HTML5: Estruturação semântica e acessível.
 
 CSS3: Estilização avançada com foco em:
@@ -17,6 +18,7 @@ Flexbox: Utilizado para o alinhamento dinâmico de componentes e elementos de na
 CSS Grid: Implementado para a estruturação robusta de layouts, dashboards e tabelas de dados.
 
 `Back-end & Banco de Dados`
+
 PHP: Lógica de negócio, controle de sessões e processamento de formulários.
 
 MySQL: Banco de dados relacional para persistência de dados de alunos e usuários.
