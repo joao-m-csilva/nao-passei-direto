@@ -1,37 +1,124 @@
-<!DOCTYPE html>
-<html>
+<?php
+session_start();
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
-<head>
-    <link rel="stylesheet" href="../styles/cadastro-aluno.css">
-</head>
+if (!isset($_SESSION['logged'])) {
+    header("Location: ../../index.php");
+    exit();
+}
 
-<body>
+include("../includes/functions.php");
+require("../includes/total_cadastros.php");
 
-<div class="container">
-    <div class="secao-principal">
+if (isset($_POST['logout'])) {
+    logout();
+    header("Location: ../../index.php");
+}
 
-        <h1>Consulta de Alunos</h1>
 
-        <form method="GET">
-            <input type="text" name="Buscar" placeholder="Digite o nome do aluno">
-            <button type="submit">Buscar</button>
-        </form>
+require("../includes/acess_db.php");
+require("../includes/atualiza_cadastro.php");
 
-        <?php
-        // 🔧 caminho corrigido
-        $db = new SQLite3('../database/alunos.db');
+$resultados = [];
 
-        $busca = $_GET['Buscar'] ?? '';
+if (isset($_POST['buscar'])) {
+    $nome_busca = $_POST['nome'];
+    $query = "SELECT * FROM alunos WHERE nome LIKE '%$nome_busca%'";
+    $consulta = $connection->query($query);
+    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
 
-        $result = $db->query("SELECT * FROM alunos WHERE nome LIKE '%$busca%'");
+<?php if (isset($_SESSION['logged']) || empty(session_id())) { ?>
+    <!DOCTYPE html>
+    <html lang="pt-br">
 
-        while ($aluno = $result->fetchArray()) {
-            echo "<p>Nome: " . $aluno['nome'] . "<br>Email: " . $aluno['email'] . "</p>";
-        }
-        ?>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/home.css">
+        <link rel="stylesheet" href="../styles/consulta_aluno.css">
+        <title>Consulta de Alunos</title>
+    </head>
 
-    </div>
-</div>
+    <body>
+        <?php if (isset($_SESSION['logged']) || empty(session_id())) { ?>
+            <main>
 
-</body>
-</html>
+                <section id="nav-menu">
+                    <?php include("../includes/nav-menu.php"); ?>
+                </section>
+
+
+                <section id="conteudo">
+                    <div class="header-busca">
+                        <h1>Consulta de Alunos</h1>
+                        <form action="consulta_aluno.php" method="POST" class="form-busca">
+                            <input type="text" name="nome" placeholder="Digite o nome do aluno..." required>
+                            <button type="submit" name="buscar">Buscar</button>
+                        </form>
+                    </div>
+
+                    <div id="container-cards">
+                        <?php if (isset($_POST['buscar'])): ?>
+                            <?php if (count($resultados) > 0): ?>
+                                <?php foreach ($resultados as $aluno): ?>
+
+                                    <div class="card-aluno" onclick="abrirModal(<?= htmlspecialchars(json_encode($aluno)) ?>)">
+                                        <div class="card-header">
+                                            <span class="matricula">#<?= $aluno['matricula'] ?></span>
+                                            <h3><?= $aluno['nome'] ?></h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <p><strong>Curso:</strong> <?= $aluno['curso'] ?></p>
+                                            <p><strong>E-mail:</strong> <?= $aluno['email'] ?></p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p class="aviso">Nenhum aluno encontrado para "<?= htmlspecialchars($nome_busca) ?>".</p>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                </section>
+            </main>
+            <div id="modalEdicao" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Ficha do Aluno</h2>
+                        <span class="close" onclick="fecharModal()">&times;</span>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong>Nome:</strong> <span id="info-nome"></span></p>
+                        <p><strong>Matrícula:</strong> <span id="info-matricula"></span></p>
+                        <p><strong>Curso:</strong> <span id="info-curso"></span></p>
+                        <p><strong>CPF:</strong> <span id="info-cpf"></span></p>
+                        <p><strong>E-mail:</strong> <span id="info-email"></span></p>
+                        <p><strong>Data de Nascimento:</strong> <span id="info-data"></span></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#" id="btn-editar-pagina" class="btn-editar">Alterar Dados</a>
+                        <button type="button" onclick="fecharModal()" class="btn-fechar">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <script src="../assets/js/update_modal.js"></script>
+
+        <!-- Alerta de sucesso para atualização de cadastro -->
+        <?php if (isset($_GET['atualizado'])): ?>
+            <script>
+                alert("✅ Cadastro atualizado com sucesso!");
+                window.history.replaceState(null, null, window.location.pathname);
+            </script>
+        <?php endif; ?>
+
+    </body>
+    <script src="../assets/js/deny_acess.js"></script>
+
+    </html>
+<?php } ?>
