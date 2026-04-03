@@ -1,0 +1,12 @@
+.nav-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.nav-links{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

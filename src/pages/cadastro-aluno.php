@@ -1,3 +1,28 @@
+<?php 
+
+require('../includes/acess_db.php');
+
+
+if(isset($_POST['enviar'])){
+    $nome = $_POST['nome'];
+    $telefone = $_POST['telefone'];
+    $curso = $_POST['curso'];
+    $cpf = $_POST['cpf'];
+    $email = $_POST['email'];
+    $data_nasc = $_POST['data'];
+
+
+    $query_cadastro = "INSERT INTO alunos(nome, telefone, curso, cpf, email, data_nasc) VALUES ('$nome', '$telefone', '$curso', '$cpf', '$email', '$data_nasc') ";
+
+    $cadastro_tabela = $connection->query($query_cadastro);
+
+     echo("<script>alert('Cadastro realizado com sucesso.');</script>");
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,30 +30,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/src/styles/cadastro-aluno.css">
+    <link rel="stylesheet" href="/src/styles/cadastro_aluno.css">
     <title>Cadastro do Usuário</title>
 </head>
 <body>
     
     <main class="container">
-        <header class="cabecalho">
-            <h1>Cadastro de Alunos</h1>
-            <p>Adicione um novo aluno ao sistema</p>
-        </header>
+        <section>
+            <?php 
+                include('../includes/nav-menu.php')
+            ?>
+        </section>
 
         <section class="secao-principal">
+            <header class="cabecalho">
+                <h1>Cadastro de Alunos</h1>
+                <p>Adicione um novo aluno ao sistema</p>
+            </header>
             <h2>Dados do Aluno</h2>
             <p>Preencha todos os campos para cadastrar um novo aluno</p>
 
-            <form action="#" method="POST">
+            <form action="cadastro-aluno.php" method="POST">
 
                 <div class="nome">
                     <label for="nome">Nome Completo *</label>
                     <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="matricula">
-                    <label for="matricula">Matrícula *</label>
-                    <input type="text" id="matricula" name="matricula" required>
                 </div>
                 <div class="telefone">
                     <label for="telefone">Telefone *</label>
@@ -52,7 +78,7 @@
                 </div>
 
                 <div class="acoes">
-                    <button type="enviar" class="btn-cadastro">Cadastrar Aluno</button>
+                    <button type="enviar" class="btn-cadastro" name="enviar" id="enviar">Cadastrar Aluno</button>
                     <button type="button" class="btn-cancelar">Cancelar</button>
                 </div>
 
