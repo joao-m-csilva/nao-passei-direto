@@ -1,12 +1,102 @@
-.nav-menu{
+* {
+    font-family: 'Poppins', 'Arial', 'Times New Roman';
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+    padding: 30px;
+    background-color: #f5f5f5;
+    align-items: center;
+    position: fixed;
+    border-radius: 20px;
+    height: 90vh;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.nav-links {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
+    width: 100%;
+    align-items: center;
+
 }
 
-.nav-links{
+.nav-button {
+    width: 100%;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative; 
+
+    align-items: center;
+    justify-content: center; 
+    padding: 0 15px;    
+
+    min-height: 50px;
+    background-color: #dfdfdf;
+    width: 100%;
+    border: none;
+    cursor: pointer
 }
+
+a.nav-button {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-button:hover {
+    background-color: #bbbbbb;
+    transform: translateX(5px);
+}
+
+.logout {
+    border: #f5f5f5;
+    cursor: pointer;
+    
+}
+
+.logout-area {
+    margin-top: auto;
+    width: 100%;
+}
+
+.logo-area {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+span.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.icon {
+    position: absolute;
+    left: 10px;          
+    z-index: 2;           
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.nav-button span:not(.icon) {
+    width: 100%;
+    text-align: center;
+    padding-left: 0;      
+    margin-left: 0;
+} 
+
