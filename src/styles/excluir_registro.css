@@ -2,9 +2,6 @@ main {
     display: grid;
     grid-template-columns: 300px 1fr;
     background-color: #d6d6d2;
-    border-radius: 20px;
-    
-
 }
 
 #nav-menu {
@@ -128,7 +125,9 @@ main {
     cursor: pointer;
 }
 
-.close:hover { color: #ff4757; }
+.close:hover { 
+    color: #ff4757; 
+}
 
 .modal-body p {
     margin-bottom: 15px;
@@ -155,23 +154,6 @@ main {
     margin-top: 25px;
 }
 
-.btn-editar {
-    flex: 2;
-    background-color: #363d7e;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: background 0.3s;
-}
-
-.btn-editar:hover {
-    background-color: #24295a;
-}
-
 .btn-fechar {
     flex: 1;
     background-color: #e9ecef;
@@ -186,4 +168,34 @@ main {
 
 .btn-fechar:hover {
     background-color: #dee2e6;
+}
+
+.btn-excluir {
+    flex: 2;
+    background-color: #ff4757;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.btn-excluir:hover {
+    background-color: #ff2a3d;
+}
+
+.confirmacao-content {
+    max-width: 400px;
+    text-align: center;
+}
+
+.confirmacao-content .modal-header {
+    justify-content: center;
+    border-bottom: none; 
+    padding-bottom: 0;
 }

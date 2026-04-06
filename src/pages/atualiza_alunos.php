@@ -22,8 +22,11 @@ $matricula = $_GET['matricula'] ?? null;
 $aluno = null;
 
 if ($matricula) {
-    $query_busca = "SELECT * FROM alunos WHERE matricula = $matricula";
-    $consulta = $connection->query($query_busca);
+    $query_busca = "SELECT * FROM alunos WHERE matricula = :matricula";
+    $consulta = $connection->prepare($query_busca);
+    $consulta->execute([
+        ':matricula' => $matricula
+    ]);
     $aluno = $consulta->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -61,7 +64,7 @@ if (!$aluno) {
 
                 <div class="container-form">
                     <form action="../includes/atualiza_cadastro.php" method="POST" class="cls_formulario">
-                        
+
                         <input type="hidden" name="matricula" value="<?= $aluno['matricula'] ?>">
 
                         <div class="div_input">

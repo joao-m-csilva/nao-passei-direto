@@ -1,6 +1,16 @@
 body {
-    background-color: #f4f7f6;
     font-family: 'Roboto', Arial, sans-serif;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+  
+}
+
+#nav-menu {
+    max-width: 300px;
+    min-height: 100vh;
 }
 
 .cabecalho {
@@ -14,13 +24,6 @@ body {
     color: #7c7c7c;
 }
 
-.container {
-    display: grid;
-    grid-template-columns:auto auto;
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
 
 .secao-principal {
     background-color: #ffffff;
@@ -38,7 +41,7 @@ body {
     color: gray;
 }
 
-form {
+.secao-principal form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;

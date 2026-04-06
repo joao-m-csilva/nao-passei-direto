@@ -1,0 +1,16 @@
+main {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    background-color: #d6d6d2;
+    border-radius: 12px;
+}
+
+#main-content {
+    border-radius: 12px;
+    padding: 30px;
+}
+
+#nav-menu {
+    max-width: 300px;
+    min-height: 100vh;
+}

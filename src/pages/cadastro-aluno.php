@@ -1,45 +1,58 @@
-<?php 
-
+<?php
 require('../includes/acess_db.php');
 
+if (isset($_POST['enviar'])) {
+    function apenasNumeros($string)
+    {
+        return preg_replace('/[^0-9]/', '', $string);
+    }
 
-if(isset($_POST['enviar'])){
     $nome = $_POST['nome'];
-    $telefone = $_POST['telefone'];
+    $telefone = apenasNumeros($_POST['telefone']);
     $curso = $_POST['curso'];
-    $cpf = $_POST['cpf'];
+    $cpf = apenasNumeros($_POST['cpf']);
     $email = $_POST['email'];
     $data_nasc = $_POST['data'];
 
+    if (strlen($cpf) != 11) {
+        echo ("<script>alert('Erro: O CPF deve conter exatamente 11 dígitos.'); history.back();</script>");
+        exit;
+    }
 
-    $query_cadastro = "INSERT INTO alunos(nome, telefone, curso, cpf, email, data_nasc) VALUES ('$nome', '$telefone', '$curso', '$cpf', '$email', '$data_nasc') ";
+    $query_cadastro = "INSERT INTO alunos (nome, telefone, curso, cpf, email, data_nasc) 
+                       VALUES (:nome, :telefone, :curso, :cpf, :email, :data_nasc)";
 
-    $cadastro_tabela = $connection->query($query_cadastro);
+    try {
+        $stmt = $connection->prepare($query_cadastro);
+        $stmt->execute([
+            ':nome' => $nome,
+            ':telefone' => $telefone,
+            ':curso' => $curso,
+            ':cpf' => $cpf,
+            ':email' => $email,
+            ':data_nasc' => $data_nasc
+        ]);
+        echo ("<script>alert('Cadastro realizado com sucesso.'); window.location.href='consultar-alunos.php';</script>");
+    } catch (PDOException $e) {
 
-     echo("<script>alert('Cadastro realizado com sucesso.');</script>");
-
+        echo ("<script>alert('Erro ao cadastrar: Verifique se e-mail ou CPF já existem.'); history.back();</script>");
+    }
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/src/styles/cadastro_aluno.css">
     <title>Cadastro do Usuário</title>
 </head>
 <body>
-    
+
     <main class="container">
-        <section>
-            <?php 
-                include('../includes/nav-menu.php')
-            ?>
+        <section id="nav-menu">
+            <?php include("../includes/nav-menu.php"); ?>
         </section>
 
         <section class="secao-principal">
@@ -47,44 +60,44 @@ if(isset($_POST['enviar'])){
                 <h1>Cadastro de Alunos</h1>
                 <p>Adicione um novo aluno ao sistema</p>
             </header>
-            <h2>Dados do Aluno</h2>
-            <p>Preencha todos os campos para cadastrar um novo aluno</p>
 
-            <form action="cadastro-aluno.php" method="POST">
-
-                <div class="nome">
+            <form action="" method="POST">
+                <div>
                     <label for="nome">Nome Completo *</label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
-                <div class="telefone">
+
+                <div>
                     <label for="telefone">Telefone *</label>
-                    <input type="number" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                    <input type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" maxlength="15" required>
                 </div>
-                <div class="curso">
+
+                <div>
                     <label for="curso">Curso *</label>
                     <input type="text" id="curso" name="curso" required>
                 </div>
-                <div class="cpf">
+
+                <div>
                     <label for="cpf">CPF *</label>
-                    <input type="number" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                    <input type="text" id="cpf" name="cpf" placeholder="Apenas números" maxlength="11" required>
                 </div>
-                <div class="email">
+
+                <div>
                     <label for="email">Email *</label>
-                    <input type="text" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
-                <div class="data">
+
+                <div>
                     <label for="data">Data de Nascimento *</label>
-                    <input type="date" id="data" name="data" required> 
+                    <input type="date" id="data" name="data" required>
                 </div>
 
                 <div class="acoes">
-                    <button type="enviar" class="btn-cadastro" name="enviar" id="enviar">Cadastrar Aluno</button>
-                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="btn-cadastro" name="enviar">Cadastrar Aluno</button>
+                    <button type="reset" class="btn-cancelar">Limpar</button>
                 </div>
-
             </form>
         </section>
     </main>
-
 </body>
 </html>

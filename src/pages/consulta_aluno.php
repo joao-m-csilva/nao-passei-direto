@@ -25,9 +25,13 @@ $resultados = [];
 
 if (isset($_POST['buscar'])) {
     $nome_busca = $_POST['nome'];
-    $query = "SELECT * FROM alunos WHERE nome LIKE '%$nome_busca%'";
-    $consulta = $connection->query($query);
-    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+    $query = "SELECT * FROM alunos WHERE nome LIKE :nome_busca";
+    $stmt = $connection->prepare($query);
+    $stmt->execute([
+        ':nome_busca' => "%$nome_busca%"
+    ]);
+
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -50,7 +54,6 @@ if (isset($_POST['buscar'])) {
                 <section id="nav-menu">
                     <?php include("../includes/nav-menu.php"); ?>
                 </section>
-
 
                 <section id="conteudo">
                     <div class="header-busca">
