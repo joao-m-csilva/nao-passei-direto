@@ -7,16 +7,15 @@
 
 .nav-menu {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     gap: 90px;
     padding: 30px;
     background-color: #f5f5f5;
-    align-items: center;
-    position: fixed;
+    align-items: stretch;
     border-radius: 20px;
-    height: 90vh;
-    width: 300px;
-    margin-top: 20px;
+    height: 100%;
+    min-width: 300px;
 }
 
 .nav-links {
@@ -24,8 +23,7 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    align-items: center;
-
+    align-items: stretch;
 }
 
 .nav-button {
@@ -34,17 +32,15 @@
     display: flex;
     border-radius: 50px;
     transition: all 0.3s ease;
-    position: relative; 
-
+    position: relative;
     align-items: center;
-    justify-content: center; 
-    padding: 0 15px;    
-
+    justify-content: center;
+    padding: 0 15px 0 55px; 
     min-height: 50px;
     background-color: #dfdfdf;
-    width: 100%;
     border: none;
-    cursor: pointer
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 a.nav-button {
@@ -58,9 +54,12 @@ a.nav-button {
 }
 
 .logout {
-    border: #f5f5f5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
     cursor: pointer;
-    
 }
 
 .logout-area {
@@ -68,7 +67,13 @@ a.nav-button {
     width: 100%;
 }
 
+.logout-area form {
+    width: 100%;
+}
+
 .logo-area {
+    display: flex;             
+    justify-content: center;  
     border-radius: 20px;
     overflow: hidden;
 }
@@ -77,13 +82,12 @@ span.icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .icon {
     position: absolute;
-    left: 10px;          
-    z-index: 2;           
+    left: 10px;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,7 +100,6 @@ span.icon {
 .nav-button span:not(.icon) {
     width: 100%;
     text-align: center;
-    padding-left: 0;      
+    padding-left: 0;
     margin-left: 0;
-} 
-
+}

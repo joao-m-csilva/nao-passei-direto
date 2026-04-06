@@ -1,13 +1,19 @@
 main {
     display: grid;
     grid-template-columns: 300px 1fr;
-    background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+    background-color: #d6d6d2;
+    border-radius: 12px;
+    padding: 30px;
     
 
 }
 
+#conteudo {
+    border-radius: 12px;
+    padding: 30px;
+}
+
 #nav-menu {
-    background-color: aqua;
     max-width: 300px;
     min-height: 100vh;
 }
@@ -19,6 +25,7 @@ main {
 }
 
 #total-cadastrado {
+    border-radius: 20px;
     display: flex;
     margin: 10px;
     margin-bottom: 50px;

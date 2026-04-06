@@ -7,8 +7,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $senha = $_POST['senha'];
     if(!empty($email) && !empty($senha)){
     $senha_hash = md5($senha);
-    $sql = "SELECT * FROM admin_users WHERE email='$email' AND password='$senha_hash'";
-    $login = $connection->query($sql);
+    $sql = "SELECT * FROM admin_users WHERE email= :email AND password=:senha_hash";
+    $login = $connection->prepare($sql);
+    $login->execute([
+        ':email' => $email,
+        ':senha_hash' => $senha_hash
+    ]);
     // var_dump($login->rowCount()); die();
 
     if($login->rowCount() == 1){

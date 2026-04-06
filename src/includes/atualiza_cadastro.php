@@ -10,16 +10,26 @@ if (isset($_POST['btn-atualizar'])) {
     $email = $_POST['email'];
     $data_nasc = $_POST['data_nasc']; 
 
-    $query = "UPDATE alunos SET 
-              nome='$nome', 
-              telefone='$telefone', 
-              curso='$curso', 
-              cpf='$cpf', 
-              email='$email', 
-              data_nasc='$data_nasc' 
-              WHERE matricula='$matricula'";
+   $query = "UPDATE alunos SET 
+              nome = :nome, 
+              telefone = :telefone, 
+              curso = :curso, 
+              cpf = :cpf, 
+              email = :email, 
+              data_nasc = :data_nasc 
+              WHERE matricula = :matricula";
 
-    if ($connection->query($query)) {
+    if ($connection) {
+        $stmt = $connection->prepare($query);
+        $stmt->execute([
+            ':nome'      => $nome,
+            ':telefone'  => $telefone,
+            ':curso'     => $curso,
+            ':cpf'       => $cpf,
+            ':email'     => $email,
+            ':data_nasc' => $data_nasc,
+            ':matricula' => $matricula
+        ]);
         header("Location: ../pages/consulta_aluno.php?atualizado=1");
         exit();
     } else {

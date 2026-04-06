@@ -10,17 +10,17 @@
     </div>
 
     <nav class="nav-links">
+        <a href="../pages/home.php" class="nav-button">
+            <span class="icon">🏠</span> Home
+        </a>
         <a href="../pages/consulta_aluno.php" class="nav-button">
             <span class="icon">🔍</span> Consultar Cadastro
         </a>
-        <a href="cadastrar.php" class="nav-button">
+        <a href="../pages/cadastro-aluno.php" class="nav-button">
             <span class="icon">📝</span> Cadastrar Aluno
         </a>
-        <a href="excluir.php" class="nav-button">
+        <a href="../pages/excluir_registro.php" class="nav-button">
             <span class="icon">🗑️</span> Excluir Cadastro
-        </a>
-        <a href="sobre.php" class="nav-button">
-            <span class="icon">💡</span> Sobre
         </a>
         <a href="../pages/gerar_dados.php" class="nav-button">
             <span class="icon">🌱</span> Gerar Seed
